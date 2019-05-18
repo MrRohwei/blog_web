@@ -87,9 +87,9 @@ input[type=text], [type=password] {
     padding-left: 10px;
 }
 #verify_div{
-    width: 65px;
+    width: 100px;
     background: red;
-    height: 27px;
+    height: 40px;
     display: inline-block;
     position: absolute;
     margin-left: 10px;
@@ -121,9 +121,9 @@ a {
 
 #logo_div {
     width: 100%;
-    position: fixed;
-    top: 30%;
-    left: 75%;
+    position: inherit;
+    top: 5%;
+    left: 40px;
     color: #00708b;
     font-size: 21px;
 }
