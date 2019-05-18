@@ -1,0 +1,129 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: url(/../images/body-bg.jpg) no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#body_div {
+    width: 270px;
+    height: 325px;
+    /*background: red;*/
+    right: 150px;
+    position: inherit;
+    top: 20%
+}
+
+/*
+登录兄弟div
+*/
+#login_div {
+    height: 100%;
+    width: 100%;
+    background-color: #d9d9d9;
+    position: inherit;
+    /*top: 20%;*/
+    /*left: 70%;*/
+    opacity: 0.5;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+/*
+form表单外层div
+ */
+#form_div {
+    position: inherit;
+    height: 100%;
+    width: 100%;
+    padding: 0 5px 0 5px;
+    /*top: 40%;*/
+    /*left: 70%;*/
+}
+
+/*
+登录标题
+*/
+#title_div {
+    position: absolute;
+    top: 20%;
+    left: 70%;
+    background: #8e8eff;
+    color: white;
+    width: 330px;
+    height: 45px;
+    padding-left: 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.input_div {
+    color: #717589;
+    height: 35px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+#submit_btn_div {
+    width: 160px;
+    height: 50px;
+    /*margin-top: 35px;*/
+    margin-left: 45px;
+    padding-top: 25px;
+}
+
+input[type=text], [type=password] {
+    width: 90%;
+    height: 25px;
+    border: 0px;
+    border-radius: 2px;
+    padding-left: 10px;
+}
+#verify_div{
+    width: 65px;
+    background: red;
+    height: 27px;
+    display: inline-block;
+    position: absolute;
+    margin-left: 10px;
+}
+#login_submit_btn {
+    color: white;
+    background: #5e5eff;
+    border: 1px solid #5e5eff;
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    font-weight: 600;
+}
+
+input[type=submit] {
+    color: white;
+    background: #5e5eff;
+    border: 1px solid #5e5eff;
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    font-weight: 600;
+}
+
+a {
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+#logo_div {
+    width: 100%;
+    position: fixed;
+    top: 30%;
+    left: 75%;
+    color: #00708b;
+    font-size: 21px;
+}
