@@ -1,6 +1,6 @@
 package com.looveh.blog_web.dao;
 
-import com.looveh.blog_web.entity.TUser;
+import com.looveh.blog_web.entity.BlogUser;
 
 import java.util.List;
 
@@ -8,15 +8,15 @@ public interface TUserMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(TUser record);
+    int insert(BlogUser record);
 
-    int insertSelective(TUser record);
+    int insertSelective(BlogUser record);
 
-    TUser selectByPrimaryKey(Integer id);
+    BlogUser selectByPrimaryKey(Integer id);
 
-    List<TUser> selectByTUser(TUser record);
+    List<BlogUser> selectByTUser(BlogUser record);
 
-    int updateByPrimaryKeySelective(TUser record);
+    int updateByPrimaryKeySelective(BlogUser record);
 
-    int updateByPrimaryKey(TUser record);
+    int updateByPrimaryKey(BlogUser record);
 }

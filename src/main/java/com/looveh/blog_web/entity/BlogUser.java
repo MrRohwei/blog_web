@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @ToString
 @EqualsAndHashCode
-public class TUser {
+public class BlogUser {
     private Integer id;
 
     private String username;

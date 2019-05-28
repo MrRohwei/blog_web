@@ -1,6 +1,6 @@
 package com.looveh.blog_web.controller;
 
-import com.looveh.blog_web.entity.TUser;
+import com.looveh.blog_web.entity.BlogUser;
 import com.looveh.blog_web.response.Response;
 import com.looveh.blog_web.service.UserService;
 import com.looveh.blog_web.utils.VerifyCodeUtil;
@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @RequestMapping("/register")
-    public void register(TUser tUser) {
+    public void register(BlogUser blogUser) {
 
     }
 
@@ -57,15 +57,15 @@ public class UserController {
             return Response.fail("验证码错误");
         }
 
-        TUser user = new TUser();
+        BlogUser user = new BlogUser();
         user.setUsername(username);
         user.setPassword(password);
-        List<TUser> tUserList = userService.findByTUser(user);
-        if (CollectionUtils.isEmpty(tUserList)) {
+        List<BlogUser> blogUserList = userService.findByTUser(user);
+        if (CollectionUtils.isEmpty(blogUserList)) {
             return Response.fail("用户名或密码错误");
         }
 
-        return Response.success(tUserList);
+        return Response.success(blogUserList);
     }
 
     @RequestMapping("/getVerifyCode")

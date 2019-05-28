@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.looveh.blog_web.dao.TUserMapper">
-    <resultMap id="BaseResultMap" type="com.looveh.blog_web.entity.TUser">
+    <resultMap id="BaseResultMap" type="com.looveh.blog_web.entity.BlogUser">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -76,7 +76,7 @@
         from t_user
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <select id="selectByTUser" parameterType="com.looveh.blog_web.entity.TUser" resultMap="BaseResultMap">
+    <select id="selectByTUser" parameterType="com.looveh.blog_web.entity.BlogUser" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_user
@@ -86,7 +86,7 @@
     delete from t_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.looveh.blog_web.entity.TUser">
+    <insert id="insert" parameterType="com.looveh.blog_web.entity.BlogUser">
     insert into t_user (id, username, password, 
       sex, imgpath, mobile, 
       email, status, description, 
@@ -98,7 +98,7 @@
       #{intro,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{isdeleted,jdbcType=BIT}, #{deletetime,jdbcType=TIMESTAMP})
   </insert>
-    <insert id="insertSelective" parameterType="com.looveh.blog_web.entity.TUser">
+    <insert id="insertSelective" parameterType="com.looveh.blog_web.entity.BlogUser">
         insert into t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -189,7 +189,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.looveh.blog_web.entity.TUser">
+    <update id="updateByPrimaryKeySelective" parameterType="com.looveh.blog_web.entity.BlogUser">
         update t_user
         <set>
             <if test="username != null">
@@ -234,7 +234,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.looveh.blog_web.entity.TUser">
+    <update id="updateByPrimaryKey" parameterType="com.looveh.blog_web.entity.BlogUser">
     update t_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

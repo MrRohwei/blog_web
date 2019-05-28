@@ -1,6 +1,6 @@
 package com.looveh.blog_web.service;
 
-import com.looveh.blog_web.entity.TUser;
+import com.looveh.blog_web.entity.BlogUser;
 
 import java.util.List;
 
@@ -12,13 +12,13 @@ import java.util.List;
  **/
 public interface UserService {
 
-    TUser findById(Integer id);
+    BlogUser findById(Integer id);
 
-    List<TUser> findByTUser(TUser user);
+    List<BlogUser> findByTUser(BlogUser user);
 
-    int createUser(TUser user);
+    int createUser(BlogUser user);
 
-    int updateUser(TUser user);
+    int updateUser(BlogUser user);
 
     int deleteUser(Integer id);
 }
