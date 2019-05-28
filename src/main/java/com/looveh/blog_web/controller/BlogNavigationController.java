@@ -1,6 +1,6 @@
 package com.looveh.blog_web.controller;
 
-import com.looveh.blog_web.annotation.Log;
+import com.looveh.blog_web.annotation.OperateLog;
 import com.looveh.blog_web.entity.BlogNavigation;
 import com.looveh.blog_web.response.Response;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ public class BlogNavigationController {
 
     @RequestMapping("/add")
     @ResponseBody
-    @Log("新增导航栏")
+    @OperateLog("新增导航栏")
     public Response add(BlogNavigation blogNavigation){
 
         return Response.fail();
@@ -26,7 +26,7 @@ public class BlogNavigationController {
 
     @RequestMapping("/update")
     @ResponseBody
-    @Log("修改导航栏")
+    @OperateLog("修改导航栏")
     public Response update(BlogNavigation blogNavigation){
 
         return Response.fail();
@@ -34,7 +34,7 @@ public class BlogNavigationController {
 
     @RequestMapping("/getById")
     @ResponseBody
-    @Log("获取导航栏")
+    @OperateLog("获取导航栏")
     public Response getById(Integer id){
 
         return Response.fail();
@@ -42,7 +42,7 @@ public class BlogNavigationController {
 
     @RequestMapping("/getList")
     @ResponseBody
-    @Log("获取导航栏列表")
+    @OperateLog("获取导航栏列表")
     public Response getList(BlogNavigation blogNavigation){
 
         return Response.fail();

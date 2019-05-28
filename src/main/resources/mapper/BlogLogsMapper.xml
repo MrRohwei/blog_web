@@ -1,103 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.looveh.blog_web.dao.BlogLogsMapper">
-  <resultMap id="BaseResultMap" type="com.looveh.blog_web.entity.BlogLogs">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="ipno" jdbcType="VARCHAR" property="ipno" />
-    <result column="level" jdbcType="VARCHAR" property="level" />
-    <result column="class_name" jdbcType="VARCHAR" property="className" />
-    <result column="method_name" jdbcType="VARCHAR" property="methodName" />
-    <result column="info" jdbcType="VARCHAR" property="info" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="duration" jdbcType="TIMESTAMP" property="duration" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.looveh.blog_web.entity.BlogLogs">
-    <result column="param" jdbcType="LONGVARCHAR" property="param" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.looveh.blog_web.entity.BlogLogs">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_type" jdbcType="VARCHAR" property="userType"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="desc" jdbcType="VARCHAR" property="desc"/>
+        <result column="param" jdbcType="VARCHAR" property="param"/>
+        <result column="duration" jdbcType="INTEGER" property="duration"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
 
-  <sql id="Base_Column_List">
-
-    id, ipno, level, class_name, method_name, info, duration, create_time
-  </sql>
-  <sql id="Blob_Column_List">
-    param
+    <sql id="Base_Column_List">
+    id, user_type, ip, desc, param, duration, remark, create_time
   </sql>
 
-  <insert id="insert" parameterType="com.looveh.blog_web.entity.BlogLogs">
+    <sql id="Base_Value_List">
+    #{id}, ${userType}, #{ip}, #{desc}, #{param}, #{duration}, #{remark}, now()
+  </sql>
 
-    insert into blog_logs (id, ipno, level, 
-      class_name, method_name, info, duration,remark,
-      create_time, param)
-    values (#{id,jdbcType=INTEGER}, #{ipno,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
-      #{className,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER},
-      #{duration,jdbcType=INTEGER}, now(), #{param,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.looveh.blog_web.entity.BlogLogs">
+    <insert id="insert" parameterType="com.looveh.blog_web.entity.BlogLogs">
 
-    insert into blog_logs
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="ipno != null">
-        ipno,
-      </if>
-      <if test="level != null">
-        level,
-      </if>
-      <if test="className != null">
-        class_name,
-      </if>
-      <if test="methodName != null">
-        method_name,
-      </if>
-      <if test="info != null">
-        info,
-      </if>
-      <if test="duration != null">
-        duration,
-      </if>
-      <if test="remark != null">
-        remark,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="param != null">
-        param,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="ipno != null">
-        #{ipno,jdbcType=VARCHAR},
-      </if>
-      <if test="level != null">
-        #{level,jdbcType=VARCHAR},
-      </if>
-      <if test="className != null">
-        #{className,jdbcType=VARCHAR},
-      </if>
-      <if test="methodName != null">
-        #{methodName,jdbcType=VARCHAR},
-      </if>
-      <if test="info != null">
-        #{info,jdbcType=VARCHAR},
-      </if>
-      <if test="duration != null">
-        #{duration,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="param != null">
-        #{param,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
+        insert into blog_logs
+        (
+        <include refid="Base_Column_List"/>
+        )
+        values
+        (
+        <include refid="Base_Value_List"/>
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.looveh.blog_web.entity.BlogLogs">
+
+        insert into blog_logs
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="ip != null">
+                ip,
+            </if>
+            <if test="desc != null">
+                desc,
+            </if>
+            <if test="param != null">
+                param,
+            </if>
+            <if test="duration != null">
+                duration,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="ip != null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="desc != null">
+                #{desc,jdbcType=VARCHAR},
+            </if>
+            <if test="param != null">
+                #{param,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="duration != null">
+                #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
 </mapper>

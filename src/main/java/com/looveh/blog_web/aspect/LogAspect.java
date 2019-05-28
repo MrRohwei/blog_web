@@ -1,10 +1,9 @@
 package com.looveh.blog_web.aspect;
 
 import com.alibaba.fastjson.JSON;
-import com.looveh.blog_web.annotation.Log;
+import com.looveh.blog_web.annotation.OperateLog;
 import com.looveh.blog_web.dao.BlogLogsMapper;
 import com.looveh.blog_web.entity.BlogLogs;
-import com.looveh.blog_web.service.BlogLogService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -30,7 +29,7 @@ public class LogAspect {
     @Autowired
     BlogLogsMapper blogLogsMapper;
 
-    @Pointcut("@annotation(com.looveh.blog_web.annotation.Log)")
+    @Pointcut("@annotation(com.looveh.blog_web.annotation.OperateLog)")
     public void pointCut() {
     }
 
@@ -51,23 +50,24 @@ public class LogAspect {
 
     /**
      * 保存日志到数据库
+     *
      * @param point
      * @param time
      */
-    private void saveLog(ProceedingJoinPoint point, Long time){
+    private void saveLog(ProceedingJoinPoint point, Long time) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
 
         BlogLogs blogLogs = new BlogLogs();
 
-        Log annotation = method.getAnnotation(Log.class);
+        OperateLog annotation = method.getAnnotation(OperateLog.class);
         if (null != annotation) {
             System.out.println("注解Log的value值为：" + annotation.value());
             blogLogs.setRemark(annotation.value());//备注，保存注解中的value
         }
 
         StringBuffer info = new StringBuffer();
-        Map<String,Object> param = new HashMap<>();
+        Map<String, Object> param = new HashMap<>();
 
         //类名+方法名
         String className = point.getTarget().getClass().getName();
@@ -90,19 +90,19 @@ public class LogAspect {
                 info.append(parameterTypes[i]);
                 info.append(",");
 
-                param.put(parameterNames[i],args[i]);
+                param.put(parameterNames[i], args[i]);
             }
         }
-        info.substring(0,info.length() - 1);
+        info.substring(0, info.length() - 1);
         info.append(")");
 
-        blogLogs.setClassName(className);
-        blogLogs.setMethodName(methodName);
-        blogLogs.setLevel("INFO");
-        blogLogs.setIpno("");//IP
-        blogLogs.setDuration(time.intValue());
-        blogLogs.setInfo(info.toString());
-        blogLogs.setParam(JSON.toJSONString(param));
+//        blogLogs.setClassName(className);
+//        blogLogs.setMethodName(methodName);
+//        blogLogs.setLevel("INFO");
+//        blogLogs.setIpno("");//IP
+//        blogLogs.setDuration(time.intValue());
+//        blogLogs.setInfo(info.toString());
+//        blogLogs.setParam(JSON.toJSONString(param));
 
         blogLogsMapper.insert(blogLogs);
     }

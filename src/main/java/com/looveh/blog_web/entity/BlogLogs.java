@@ -13,22 +13,19 @@ public class BlogLogs {
 
     private Integer id;
 
-    private String ipno;
+    private String userType;
 
-    private String level;
+    private String ip;
 
-    private String className;
-
-    private String methodName;
-
-    private String info;
-
-    private Date createTime;
+    private String desc;
 
     private String param;
 
     private Integer duration;
 
     private String remark;
+
+    private Date createTime;
+
 
 }
