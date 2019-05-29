@@ -21,4 +21,6 @@ public interface UserService {
     int updateUser(BlogUser user);
 
     int deleteUser(Integer id);
+
+    BlogUser findByUserName(String userName);
 }

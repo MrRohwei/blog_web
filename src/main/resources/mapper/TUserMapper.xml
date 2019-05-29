@@ -73,21 +73,21 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_user
+        from blog_user
         where id = #{id,jdbcType=INTEGER}
     </select>
     <select id="selectByTUser" parameterType="com.looveh.blog_web.entity.BlogUser" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_user
+        from blog_user
         <include refid="Base_Column_Where"/>
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_user
+    delete from blog_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.looveh.blog_web.entity.BlogUser">
-    insert into t_user (id, username, password, 
+    insert into blog_user (id, username, password, 
       sex, imgpath, mobile, 
       email, status, description, 
       intro, createtime, updatetime, 
@@ -99,7 +99,7 @@
       #{isdeleted,jdbcType=BIT}, #{deletetime,jdbcType=TIMESTAMP})
   </insert>
     <insert id="insertSelective" parameterType="com.looveh.blog_web.entity.BlogUser">
-        insert into t_user
+        insert into blog_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -190,7 +190,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.looveh.blog_web.entity.BlogUser">
-        update t_user
+        update blog_user
         <set>
             <if test="username != null">
                 username = #{username,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.looveh.blog_web.entity.BlogUser">
-    update t_user
+    update blog_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=INTEGER},

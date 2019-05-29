@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * @Author Looveh
  * @Date 2019/5/18/018 15:09
@@ -14,8 +16,9 @@ import lombok.ToString;
 @Data
 @ToString
 @EqualsAndHashCode
-public class Response<T> {
+public class Response<T> implements Serializable {
 
+    private static final long serialVersionUID = 1227878354534856850L;
     private int code;
     private String msg;
     private T data;
@@ -38,6 +41,10 @@ public class Response<T> {
         this.code = code;
         this.msg = msg;
         this.data = data;
+    }
+
+    public static <T> Response<T> success() {
+        return new Response(ResponseCode.SUCCESS.getKey(), ResponseCode.SUCCESS.getValue(), null);
     }
 
     public static <T> Response<T> success(T data) {

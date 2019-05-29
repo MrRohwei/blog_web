@@ -5,6 +5,7 @@ import com.looveh.blog_web.entity.BlogUser;
 import com.looveh.blog_web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -43,5 +44,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public int deleteUser(Integer id) {
         return tUserMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public BlogUser findByUserName(String userName) {
+        BlogUser blogUser = new BlogUser();
+        blogUser.setUsername(userName);
+        List<BlogUser> blogUsers = tUserMapper.selectByTUser(blogUser);
+        if(!CollectionUtils.isEmpty(blogUsers)){
+            return blogUsers.get(0);
+        }
+        return null;
     }
 }

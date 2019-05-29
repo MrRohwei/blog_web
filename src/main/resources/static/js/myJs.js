@@ -5,6 +5,7 @@ function loginSubmit() {
     var verifyCode = $("input[name=verifyCode]").val();
     if (!username) {
         alert("请输入用户名");
+        // $("input[name=username]").css("border","2px solid red");//用户名为空提示css
         return false;
     }
     if (!password) {
@@ -15,19 +16,21 @@ function loginSubmit() {
         alert("请输入验证码");
         return false;
     }
-    var password = hex_md5(password);
-
+    var data = {
+        username: username,
+        password: password,
+        verifyCode:verifyCode
+    };
+    // var data = postAjax("/user/loginSubmit",data);
+    // alert(data);
+    // var password = hex_md5(password);
     $.ajax({
-        url: "/user/login",
+        url: "/user/loginSubmit",
         type: "post",
-        data: {
-            username: username,
-            password: password,
-            verifyCode:verifyCode
-        },
-        async: false,
+        data: data,
+        // async: false,
+        // dataType: "application/json",
         success: function (data) {
-            console.log(data);
             if(!data){
                 alert("系统错误");
                 return false;
@@ -35,9 +38,11 @@ function loginSubmit() {
                 var obj = JSON.parse(data);
                 var code = obj.code;
                 var msg = obj.msg;
+                $("#imgVerify").click();
                 if(code == 200){
-                    alert("登录成功");
-                    return true;
+                    // alert("登录成功");
+                    location.href = "index";
+                    // return true;
                 }else{
                     alert(msg);
                 }
@@ -47,7 +52,7 @@ function loginSubmit() {
             alert("报错了");
             return false;
         }
-    })
+    });
 }
 
 /**

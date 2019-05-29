@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Looveh个人博客-登录</title>
+    <link rel="shortcut icon" href="/../images/favicon.ico">
+</head>
+
+<link type="text/css" rel="stylesheet" href="/../css/mycss.css">
+
+<script type="text/javascript" src="/../js/jquery.js"></script>
+<script type="text/javascript" src="/../js/myJs.js"></script>
+<script type="text/javascript" src="/../js/packageajax.js"></script>
+<script type="text/javascript" src="/../js/md5.js"></script>
+
+<body>
+<div id="body_div">
+    <div id="login_div">
+    </div>
+    <!--登录-->
+    <!--<div id="title_div">-->
+        <!--<h2 style="margin-top: 5px;">登 录</h2>-->
+    <!--</div>-->
+    <!--logo-->
+    <div id="logo_div">Looveh个人博客登录</div>
+    <!--表单-->
+    <div id="form_div">
+        <form action="" method="" id="login_form" onsubmit="return loginSubmit()" style="margin-top: 55px">
+            <div class="input_div">
+                <div><input placeholder="用户名" type="text" name="username"/></div>
+            </div>
+            <div class="input_div">
+                <div><input placeholder="密码" type="password" name="password"/>
+                </div>
+            </div>
+            <div class="input_div">
+                <div>
+                    <input placeholder="验证码" type="text" name="verifyCode" maxlength="4" style="width: 47%;"/>
+                    <div id="verify_div">
+                        <img id="imgVerify" alt="更换验证码" onclick="changeVerifyCode(this)" src="/user/getVerifyCode"/>
+                    </div>
+                </div>
+            </div>
+            <a href="/user/forgotPassword">忘记密码？</a>
+            <div id="submit_btn_div">
+                <input type="button" value="登　录" onclick="loginSubmit()" id="login_submit_btn"/>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $('body').bind('keydown',function(event){
+        if(event.keyCode == "13")
+        {
+            loginSubmit();
+            // $("#login_submit_btn").click();
+        }
+    });
+</script>
+
+<style>
+    #login_submit_btn{
+        position: relative; /** 相对布局 **/
+    }
+    #login_submit_btn:active{
+        top: 2px; /**向下偏移2px **/
+    }
+</style>

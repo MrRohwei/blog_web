@@ -13,22 +13,24 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-    id, user_type, ip, desc, param, duration, remark, create_time
+    `id`, `user_type`, `ip`, `desc`, `param`, `duration`, `remark`, `create_time`
   </sql>
 
     <sql id="Base_Value_List">
-    #{id}, ${userType}, #{ip}, #{desc}, #{param}, #{duration}, #{remark}, now()
+    #{id}, #{userType}, #{ip}, #{desc}, #{param}, #{duration}, #{remark}, now()
   </sql>
 
     <insert id="insert" parameterType="com.looveh.blog_web.entity.BlogLogs">
-
+        <!--<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">-->
+            <!--SELECT LAST_INSERT_ID()-->
+        <!--</selectKey>-->
         insert into blog_logs
         (
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         )
         values
         (
-        <include refid="Base_Value_List"/>
+        <include refid="Base_Value_List" />
         )
     </insert>
 
