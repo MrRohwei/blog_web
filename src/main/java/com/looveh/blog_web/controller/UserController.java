@@ -55,7 +55,7 @@ public class UserController {
     @OperateLog(value = "登录接口", desc = CommonConstant.LOGIN_IN, userType = CommonConstant.USERTYPE_ADMIN)
     @ResponseBody
     public Response<Boolean> login(HttpServletRequest request, String username, String password, String verifyCode) {
-        log.info("登录参数：username={},password={},verifyCode={}", username, password,verifyCode);
+//        log.info("登录参数：username={},password={},verifyCode={}", username, password,verifyCode);
         if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
             return Response.fail("用户名或密码为空");
         }

@@ -74,7 +74,7 @@ public class VerifyCodeUtil {
         for (int i = 0; i < codeLength; i++) {
             randomString = drowString(g, randomString, i);
         }
-        LOG.info("产生随机字符串为>>>>>>>>>>>{}", randomString);
+//        LOG.info("产生随机字符串为>>>>>>>>>>>{}", randomString);
 
         //将验证码保存到session
         session.removeAttribute(VERIFY_SESSION_KEY);
