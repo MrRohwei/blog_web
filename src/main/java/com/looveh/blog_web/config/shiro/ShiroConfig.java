@@ -23,7 +23,7 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
-        shiroFilterFactoryBean.setLoginUrl("/user/loginPage");//登录页面
+        shiroFilterFactoryBean.setLoginUrl("/loginPage");//登录页面/user
         shiroFilterFactoryBean.setSuccessUrl("/index");//登录成功跳转页面
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");//未授权
 
@@ -33,9 +33,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/images/**", "anon");
-        filterChainDefinitionMap.put("/user/getVerifyCode", "anon");
-        filterChainDefinitionMap.put("/user/loginSubmit", "anon");
-        filterChainDefinitionMap.put("/user/forgotPassword", "anon");//忘记密码页面
+        filterChainDefinitionMap.put("/getVerifyCode", "anon");///user
+        filterChainDefinitionMap.put("/loginSubmit", "anon");///user
+        filterChainDefinitionMap.put("/forgotPassword", "anon");//忘记密码页面/user
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/", "anon");
 
@@ -45,6 +45,10 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
+    /**
+     * 配置核心安全事务管理器
+     * @return
+     */
     @Bean
     public SecurityManager securityManager(){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -52,8 +56,23 @@ public class ShiroConfig {
         return securityManager;
     }
 
+    /**
+     * 自定义权限登录器
+     * @return
+     */
     @Bean
     public ShiroRealm shiroRealm(){
-        return new ShiroRealm();
+        ShiroRealm shiroRealm = new ShiroRealm();
+        shiroRealm.setCredentialsMatcher(credentialsMatcher());
+        return shiroRealm;
+    }
+
+    /**
+     * 配置自定义密码比较器
+     * @return
+     */
+    @Bean
+    public CredentialsMatcher credentialsMatcher(){
+        return new CredentialsMatcher();
     }
 }

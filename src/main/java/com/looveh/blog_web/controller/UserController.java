@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
  * @Desc TODO
  **/
 @Controller
-@RequestMapping("/user")
+@RequestMapping
 @Log4j2
 public class UserController {
 

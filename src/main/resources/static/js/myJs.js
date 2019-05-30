@@ -25,7 +25,7 @@ function loginSubmit() {
     // alert(data);
     // var password = hex_md5(password);
     $.ajax({
-        url: "/user/loginSubmit",
+        url: "/loginSubmit",
         type: "post",
         data: data,
         // async: false,
