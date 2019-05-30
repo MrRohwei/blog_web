@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Author：looveh
  * Date：2019/5/28
@@ -53,8 +55,8 @@ public class BlogNavigationController {
     @ResponseBody
     @OperateLog("获取导航栏列表")
     public Response getList(BlogNavigation blogNavigation){
-
-        return Response.success();
+        List<BlogNavigation> blogNavigationList = blogNavigationService.findList(blogNavigation);
+        return Response.success(blogNavigationList);
     }
 
 }

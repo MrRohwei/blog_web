@@ -45,6 +45,11 @@ public class UserController {
         return "index";
     }
 
+    @RequestMapping("/logout")
+    public String logout() {
+        return "login";
+    }
+
     @RequestMapping("/register")
     @ResponseBody
     public Response register(BlogUser blogUser) {

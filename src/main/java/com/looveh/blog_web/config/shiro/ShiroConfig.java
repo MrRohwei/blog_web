@@ -37,7 +37,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/loginSubmit", "anon");///user
         filterChainDefinitionMap.put("/forgotPassword", "anon");//忘记密码页面/user
         filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/", "anon");
+        filterChainDefinitionMap.put("/loginPage", "anon");
 
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
