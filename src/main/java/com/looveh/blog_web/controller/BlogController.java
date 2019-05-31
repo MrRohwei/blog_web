@@ -1,5 +1,6 @@
 package com.looveh.blog_web.controller;
 
+import com.looveh.blog_web.response.Response;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BlogController {
 
-    @RequestMapping("/blogManager")
-    public String blogManager(){
-        return "news/newsList";
+    @RequestMapping("/getList")
+    public Response getList(){
+
+
+        return Response.success();
     }
 }

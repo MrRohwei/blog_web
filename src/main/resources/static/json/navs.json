@@ -3,7 +3,7 @@
 	"icon" : "icon-computer",
 	"href" : "page/main.html",
 	"spread" : false
-}{
+},{
 	"title" : "导航栏",
 	"icon" : "icon-computer",
 	"href" : "page/news/newsList.html",
