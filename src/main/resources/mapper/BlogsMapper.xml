@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.looveh.blog_web.dao.BlogsMapper">
+  <resultMap id="BaseResultMap" type="com.looveh.blog_web.entity.Blogs">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="like_num" jdbcType="INTEGER" property="likeNum" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+    <result column="look_num" jdbcType="INTEGER" property="lookNum" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="deleted_time" jdbcType="TIMESTAMP" property="deletedTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.looveh.blog_web.entity.Blogs">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, title, status, user_id, author, like_num, comment_num, look_num, created_time, deleted_time
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blogs
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from blogs
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.looveh.blog_web.entity.Blogs" useGeneratedKeys="true" keyProperty="id">
+    insert into blogs (id, title, status, 
+      user_id, author, like_num, comment_num,
+      look_num, created_time, deleted_time, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{status,jdbcType=CHAR},
+      #{userId,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, 0, 0,
+      0, now(), #{deletedTime,jdbcType=TIMESTAMP},
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.looveh.blog_web.entity.Blogs">
+    insert into blogs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="likeNum != null">
+        like_num,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="lookNum != null">
+        look_num,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="deletedTime != null">
+        deleted_time,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="likeNum != null">
+        #{likeNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="lookNum != null">
+        #{lookNum,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedTime != null">
+        #{deletedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.looveh.blog_web.entity.Blogs">
+    update blogs
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="likeNum != null">
+        like_num = #{likeNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="lookNum != null">
+        look_num = #{lookNum,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedTime != null">
+        deleted_time = #{deletedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.looveh.blog_web.entity.Blogs">
+    update blogs
+    set title = #{title,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      like_num = #{likeNum,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      look_num = #{lookNum,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      deleted_time = #{deletedTime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.looveh.blog_web.entity.Blogs">
+    update blogs
+    set title = #{title,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      like_num = #{likeNum,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      look_num = #{lookNum,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      deleted_time = #{deletedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByBlogs" parameterType="com.looveh.blog_web.entity.Blogs" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blogs
+    where 1=1
+    <if test="title != null">
+      title like concat('%',#{title,jdbcType=VARCHAR},'%') ,
+    </if>
+    <if test="status != null">
+      status = #{status,jdbcType=CHAR},
+    </if>
+    <if test="userId != null">
+      user_id = #{userId,jdbcType=INTEGER},
+    </if>
+    <if test="author != null">
+      author = #{author,jdbcType=VARCHAR},
+    </if>
+    <if test="createdTime != null">
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="deletedTime != null">
+      deleted_time = #{deletedTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="usePage">
+      limit #{offset},#{pageSize}
+    </if>
+  </select>
+</mapper>

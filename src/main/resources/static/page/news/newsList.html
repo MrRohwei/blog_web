@@ -40,7 +40,8 @@
 	<div class="layui-form news_list">
 	  	<table class="layui-table">
 		    <colgroup>
-				<col width="50">
+				<col>
+				<col>
 				<col>
 				<col width="9%">
 				<col width="9%">
@@ -51,12 +52,13 @@
 		    </colgroup>
 		    <thead>
 				<tr>
-					<th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
+					<th style="text-align:left;">ID</th>
 					<th style="text-align:left;">文章标题</th>
-					<th>发布人</th>
-					<th>审核状态</th>
-					<th>浏览权限</th>
-					<th>是否展示</th>
+					<th>文章作者</th>
+					<th>点赞数</th>
+					<th>评论数</th>
+					<th>游览量</th>
+					<th>状态</th>
 					<th>发布时间</th>
 					<th>操作</th>
 				</tr> 
@@ -66,50 +68,46 @@
 	</div>
 	<div id="page"></div>
 	<script type="text/javascript" src="../../layui/layui.js"></script>
-	<!--<script type="text/javascript" src="newsList.js"></script>-->
+	<script type="text/javascript" src="newsList.js"></script>
 	<script type="text/javascript" src="../../js/jquery.js"></script>
 </body>
 </html>
 <script type="text/javascript">
-    $(document).ready(function() {
-        for (var i = 0; i < 10; i++) {
-            var tr = $("<tr></tr>");
-            tr.append("<td>" +
-                "<input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>" +
-                "<td>1</td>"+
-            "<td>2</td>"+
-            "<td>3</td>"+
-            "<td>4</td>"+
-            "<td>5</td>"+
-            "<td>6</td>"+
-            "<td>7</td>"
-        );
-            $(".news_content").append(tr);
-        }
-		/*$.ajax({
-            url: "/blogNavigation/getList",
+    /**
+	 * 查询按钮点击
+     */
+    $(".search_btn").click(function () {
+		var title = $(".search_input").val();
+        $.ajax({
+            url: "/admin/blog/blogList",
             type: "post",
             data: {},
-			success: function (obj) {
-                // var data = obj.data;
-                // for (var i = 0; i < data.length; i++) {
-				// 	var tr = $("<tr></tr>");
-				// 	tr.append("<td>" +
-				// 		"<input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>" +
-                //         "<td>1</td>"
-				// 		"<td>2</td>"
-				// 		"<td>3</td>"
-				// 		"<td>4</td>"
-				// 		"<td>5</td>"
-				// 		"<td>6</td>"
-				// 		"<td>7</td>"
-				// 		);
-				// 	$(".news_content").append(tr);
-                // }
-			},
-			error: function () {
+            success: function (obj) {
+                obj = JSON.parse(obj);
+                if(obj.code != 200){
+                    layer.msg(obj.msg);
+                    return;
+				}
+                var data = obj.data;
+                for (var i = 0; i < data.length; i++) {
+                	var tr = $("<tr></tr>");
+                	tr.append("<td>"+data[i].id+"</td>"+
+                		"<td>"+data[i].title+"</td>"+
+                		"<td>"+data[i].author+"</td>"+
+                		"<td>"+data[i].likeNum+"</td>"+
+                		"<td>"+data[i].commentNum+"</td>"+
+                		"<td>"+data[i].lookNum+"</td>"+
+                        "<td>"+data[i].statusName+"</td>"+
+                        "<td>"+data[i].createdTimeString+"</td>"+
+                		"<td>操作</td>"
+                		);
+                    $(".news_content").empty();
+                	$(".news_content").append(tr);
+                }
+            },
+            error: function () {
 
             }
-		})*/
-    });
+        })
+    })
 </script>

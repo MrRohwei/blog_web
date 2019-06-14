@@ -1,31 +1,55 @@
 package com.looveh.blog_web.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-
 import java.util.Date;
 
-@Data
-@ToString
-@EqualsAndHashCode
 public class BlogLogs {
-
     private Integer id;
 
-    private String userType;
+    private Integer userId;
 
-    private String ip;
+    private String modelType;
 
-    private String desc;
+    private String operation;
 
-    private String param;
+    private Date createdTime;
 
-    private Integer duration;
+    public Integer getId() {
+        return id;
+    }
 
-    private String remark;
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    private Date createTime;
+    public Integer getUserId() {
+        return userId;
+    }
 
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
+    public String getModelType() {
+        return modelType;
+    }
+
+    public void setModelType(String modelType) {
+        this.modelType = modelType == null ? null : modelType.trim();
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation == null ? null : operation.trim();
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
 }

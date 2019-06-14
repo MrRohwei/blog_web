@@ -213,3 +213,10 @@ CREATE TABLE `blog_logs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='日志表'
 ```
+### 3.接口设计<a name="jksj"></a>
+#### 后台管理系统
+- 博客列表(blogList)
+- 查看博客(findBlog)
+- 发表博客(addBlog)
+- 编辑博客(editBlog)
+- 删除博客(deleteBlog)

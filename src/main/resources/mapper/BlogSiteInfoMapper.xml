@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.looveh.blog_web.dao.BlogSiteInfoMapper">
+  <resultMap id="BaseResultMap" type="com.looveh.blog_web.entity.BlogSiteInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="site_title" jdbcType="VARCHAR" property="siteTitle" />
+    <result column="site_sub_title" jdbcType="VARCHAR" property="siteSubTitle" />
+    <result column="site_icon" jdbcType="VARCHAR" property="siteIcon" />
+    <result column="site_logo" jdbcType="VARCHAR" property="siteLogo" />
+    <result column="open_regist" jdbcType="BIT" property="openRegist" />
+    <result column="site_keyword" jdbcType="VARCHAR" property="siteKeyword" />
+    <result column="site_url" jdbcType="VARCHAR" property="siteUrl" />
+    <result column="site_owner" jdbcType="VARCHAR" property="siteOwner" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.looveh.blog_web.entity.BlogSiteInfo">
+    <result column="site_desc" jdbcType="LONGVARCHAR" property="siteDesc" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, site_title, site_sub_title, site_icon, site_logo, open_regist, site_keyword, 
+    site_url, site_owner
+  </sql>
+  <sql id="Blob_Column_List">
+    site_desc
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_site_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from blog_site_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.looveh.blog_web.entity.BlogSiteInfo">
+    insert into blog_site_info (id, site_title, site_sub_title, 
+      site_icon, site_logo, open_regist, 
+      site_keyword, site_url, site_owner, 
+      site_desc)
+    values (#{id,jdbcType=INTEGER}, #{siteTitle,jdbcType=VARCHAR}, #{siteSubTitle,jdbcType=VARCHAR}, 
+      #{siteIcon,jdbcType=VARCHAR}, #{siteLogo,jdbcType=VARCHAR}, #{openRegist,jdbcType=BIT}, 
+      #{siteKeyword,jdbcType=VARCHAR}, #{siteUrl,jdbcType=VARCHAR}, #{siteOwner,jdbcType=VARCHAR}, 
+      #{siteDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.looveh.blog_web.entity.BlogSiteInfo">
+    insert into blog_site_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="siteTitle != null">
+        site_title,
+      </if>
+      <if test="siteSubTitle != null">
+        site_sub_title,
+      </if>
+      <if test="siteIcon != null">
+        site_icon,
+      </if>
+      <if test="siteLogo != null">
+        site_logo,
+      </if>
+      <if test="openRegist != null">
+        open_regist,
+      </if>
+      <if test="siteKeyword != null">
+        site_keyword,
+      </if>
+      <if test="siteUrl != null">
+        site_url,
+      </if>
+      <if test="siteOwner != null">
+        site_owner,
+      </if>
+      <if test="siteDesc != null">
+        site_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="siteTitle != null">
+        #{siteTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="siteSubTitle != null">
+        #{siteSubTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="siteIcon != null">
+        #{siteIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLogo != null">
+        #{siteLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="openRegist != null">
+        #{openRegist,jdbcType=BIT},
+      </if>
+      <if test="siteKeyword != null">
+        #{siteKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="siteUrl != null">
+        #{siteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteOwner != null">
+        #{siteOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="siteDesc != null">
+        #{siteDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.looveh.blog_web.entity.BlogSiteInfo">
+    update blog_site_info
+    <set>
+      <if test="siteTitle != null">
+        site_title = #{siteTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="siteSubTitle != null">
+        site_sub_title = #{siteSubTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="siteIcon != null">
+        site_icon = #{siteIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLogo != null">
+        site_logo = #{siteLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="openRegist != null">
+        open_regist = #{openRegist,jdbcType=BIT},
+      </if>
+      <if test="siteKeyword != null">
+        site_keyword = #{siteKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="siteUrl != null">
+        site_url = #{siteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteOwner != null">
+        site_owner = #{siteOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="siteDesc != null">
+        site_desc = #{siteDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.looveh.blog_web.entity.BlogSiteInfo">
+    update blog_site_info
+    set site_title = #{siteTitle,jdbcType=VARCHAR},
+      site_sub_title = #{siteSubTitle,jdbcType=VARCHAR},
+      site_icon = #{siteIcon,jdbcType=VARCHAR},
+      site_logo = #{siteLogo,jdbcType=VARCHAR},
+      open_regist = #{openRegist,jdbcType=BIT},
+      site_keyword = #{siteKeyword,jdbcType=VARCHAR},
+      site_url = #{siteUrl,jdbcType=VARCHAR},
+      site_owner = #{siteOwner,jdbcType=VARCHAR},
+      site_desc = #{siteDesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.looveh.blog_web.entity.BlogSiteInfo">
+    update blog_site_info
+    set site_title = #{siteTitle,jdbcType=VARCHAR},
+      site_sub_title = #{siteSubTitle,jdbcType=VARCHAR},
+      site_icon = #{siteIcon,jdbcType=VARCHAR},
+      site_logo = #{siteLogo,jdbcType=VARCHAR},
+      open_regist = #{openRegist,jdbcType=BIT},
+      site_keyword = #{siteKeyword,jdbcType=VARCHAR},
+      site_url = #{siteUrl,jdbcType=VARCHAR},
+      site_owner = #{siteOwner,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

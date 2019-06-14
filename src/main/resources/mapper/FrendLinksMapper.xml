@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.looveh.blog_web.dao.FrendLinksMapper">
+  <resultMap id="BaseResultMap" type="com.looveh.blog_web.entity.FrendLinks">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="link_name" jdbcType="VARCHAR" property="linkName" />
+    <result column="link_href" jdbcType="VARCHAR" property="linkHref" />
+    <result column="link_logo" jdbcType="VARCHAR" property="linkLogo" />
+    <result column="link_remark" jdbcType="VARCHAR" property="linkRemark" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="deleted_time" jdbcType="TIMESTAMP" property="deletedTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, link_name, link_href, link_logo, link_remark, status, created_time, deleted_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from frend_links
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from frend_links
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.looveh.blog_web.entity.FrendLinks">
+    insert into frend_links (id, link_name, link_href, 
+      link_logo, link_remark, status, 
+      created_time, deleted_time)
+    values (#{id,jdbcType=INTEGER}, #{linkName,jdbcType=VARCHAR}, #{linkHref,jdbcType=VARCHAR}, 
+      #{linkLogo,jdbcType=VARCHAR}, #{linkRemark,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{deletedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.looveh.blog_web.entity.FrendLinks">
+    insert into frend_links
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="linkName != null">
+        link_name,
+      </if>
+      <if test="linkHref != null">
+        link_href,
+      </if>
+      <if test="linkLogo != null">
+        link_logo,
+      </if>
+      <if test="linkRemark != null">
+        link_remark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="deletedTime != null">
+        deleted_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="linkName != null">
+        #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkHref != null">
+        #{linkHref,jdbcType=VARCHAR},
+      </if>
+      <if test="linkLogo != null">
+        #{linkLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="linkRemark != null">
+        #{linkRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedTime != null">
+        #{deletedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.looveh.blog_web.entity.FrendLinks">
+    update frend_links
+    <set>
+      <if test="linkName != null">
+        link_name = #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkHref != null">
+        link_href = #{linkHref,jdbcType=VARCHAR},
+      </if>
+      <if test="linkLogo != null">
+        link_logo = #{linkLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="linkRemark != null">
+        link_remark = #{linkRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedTime != null">
+        deleted_time = #{deletedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.looveh.blog_web.entity.FrendLinks">
+    update frend_links
+    set link_name = #{linkName,jdbcType=VARCHAR},
+      link_href = #{linkHref,jdbcType=VARCHAR},
+      link_logo = #{linkLogo,jdbcType=VARCHAR},
+      link_remark = #{linkRemark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      deleted_time = #{deletedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
