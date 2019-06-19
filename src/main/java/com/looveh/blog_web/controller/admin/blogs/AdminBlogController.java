@@ -52,7 +52,7 @@ public class AdminBlogController {
         if (StringUtils.isNotBlank(param.getTitle())) {
             blogs.setTitle(param.getTitle());
         }
-        List<Blogs> list = blogsService.findList(blogs);
+        List<Blogs> list = (List<Blogs>) blogsService.findList(blogs);
         if (!CollectionUtils.isEmpty(list)) {
             for (Blogs o : list) {
                 BlogListDto dto = new BlogListDto();

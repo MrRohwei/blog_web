@@ -26,7 +26,8 @@ public class BlogServiceImpl implements BlogsService {
         List<Blogs> blogs1 = blogsMapper.selectByBlogs(blogs);
 
 
-        return blogsMapper.selectByBlogs(blogs);
+        return null;
+//        return blogsMapper.selectByBlogs(blogs);
     }
 
     @Override
